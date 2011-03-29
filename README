@@ -1,7 +1,7 @@
 A JavaScript translation of the timesince function from Django/Python.
 
-timesince() converts Date objects to human readable strings relative to the
-current time which look like this: '2 months, 3 days'.
+timesince() converts Date objects to a human readable format which is a delta from
+the current time.  Here is an example: '2 months, 3 days'.
 
 Put this snippet in an HTML page for an example of use:
 
