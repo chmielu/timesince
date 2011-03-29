@@ -1,0 +1,73 @@
+<script src="timesince.js"></script>
+
+<h1>Date.timesince()</h1>
+
+<dl>
+<dt>3 hours<dd id="3_hours">
+<dt>3 hours 5 minutes<dd id="3_hours_5_minutes">
+<dt>5_seconds<dd id="5_seconds">
+<dt>2_years_10_seconds<dd id="2_years_10_seconds">
+<dt>2_years_3_months<dd id="2_years_3_months">
+<dt>1 year<dd id="1_year">
+<dt>1 month<dd id="1_month">
+<dt>1 day<dd id="1_day">
+<dt>2 days, 3 hours<dd id="2_days_3_hours">
+<dt>1 hour<dd id="1_hour">
+<dt>1 minute<dd id="1_minute">
+<dt>3 days in the future<dd id="3_days_future">
+</dl>
+
+<h1>Date.timeuntil()</h1>
+
+<dl>
+<dt>3 hours<dd id="3_hours_future">
+<dt>3 hours, 33 minutes<dd id="3_hours_33_minutes_future">
+</dl>
+
+<script>
+
+  time_ago = function(ms_ago) {
+    var now = new Date();
+    return new Date(now.getTime() - ms_ago);
+  }
+
+  time_future = function(ms_hence) {
+    return time_ago(-1 * ms_hence);
+  }
+
+  set_contents = function(id, content) {
+    document.getElementById(id).innerHTML = content;
+  }
+
+  var SECOND_MS = 1000;
+  var MINUTE_MS = SECOND_MS * 60;
+  var HOUR_MS = MINUTE_MS * 60;
+  var DAY_MS = 24 * HOUR_MS;
+  var MONTH_MS = 30 * DAY_MS;
+  var YEAR_MS = 365 * DAY_MS;
+
+  /* timesince() */
+
+  set_contents('3_hours', time_ago(3*HOUR_MS).timesince());
+  set_contents('3_hours_5_minutes', time_ago(3*HOUR_MS + 5*MINUTE_MS).timesince());
+  set_contents('5_seconds', time_ago(5*SECOND_MS).timesince());
+  set_contents('2_years_10_seconds', time_ago(2*YEAR_MS + 10*SECOND_MS).timesince());
+  set_contents('2_years_3_months', time_ago(2*YEAR_MS + 3*MONTH_MS).timesince());
+  set_contents('1_year', time_ago(YEAR_MS).timesince());
+  set_contents('1_month', time_ago(MONTH_MS).timesince());
+  set_contents('1_day', time_ago(DAY_MS).timesince());
+  set_contents('2_days_3_hours', time_ago(2*DAY_MS + 3*HOUR_MS).timesince());
+  set_contents('1_hour', time_ago(HOUR_MS).timesince());
+  set_contents('1_minute', time_ago(MINUTE_MS).timesince());
+  set_contents('3_days_future', time_future(3*DAY_MS).timesince());
+
+  /* timeuntil() */
+  
+  set_contents('3_hours_future', time_future(3*HOUR_MS).timeuntil());
+  set_contents('3_hours_33_minutes_future', time_future(3*HOUR_MS + 33*MINUTE_MS).timeuntil());
+
+
+</script>
+
+
+
